@@ -116,5 +116,7 @@ func TestTuning_1and2(t *testing.T) {
 	time.Sleep(time.Millisecond * 10)
 	fmt.Println("CALL 2")
 	testTuning2(t)
+	fmt.Println("CALL 2")
+	testTuning2(t)
 	tuning.Wait()
 }
