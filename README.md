@@ -11,7 +11,13 @@
 
 概念解释：
 
-+ Music    - 一组任务调度
-+ Track(s) - 协程（池）的封装
-+ Melody   - 任务
++ Cantor   - 控制中心
++ Music    - 任务工厂
++ Track(s) - 任务（链）
++ Melody   - 任务负载
 + Clock    - 定时用
+
+## TODO
+
++ [ ] tuning 优先级策略
++ [ ] fix uuid
