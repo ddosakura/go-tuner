@@ -68,10 +68,18 @@ func (m *Music) Get(id string) (tc *TrackChan, ok bool) {
 
 // BuildChan - build task chan
 func (m *Music) BuildChan(tc *TrackChan) (t *Track, total int) {
+	return m.buildChan(tc, &map[*TrackChan]*Track{})
+}
+func (m *Music) buildChan(tc *TrackChan, tMap *map[*TrackChan]*Track) (t *Track, total int) {
+	t, ok := (*tMap)[tc]
+	if ok {
+		return
+	}
 	t = NewTrack(tc.melody, tc.bufLen)
+	(*tMap)[tc] = t
 	total = 1
 	for i := range tc.next {
-		sub, sum := m.BuildChan(tc.next[i])
+		sub, sum := m.buildChan(tc.next[i], tMap)
 		t.Before(sub)
 		total += sum
 	}

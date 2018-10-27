@@ -119,6 +119,11 @@ func (t *Track) Finish() {
 
 // Before - t before n
 func (t *Track) Before(n *Track) *Track {
+	for e := t.next.Front(); e != nil; e = e.Next() {
+		if e.Value == n {
+			return t
+		}
+	}
 	t.next.PushBack(n)
 	return t
 }

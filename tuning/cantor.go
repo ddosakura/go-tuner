@@ -1,6 +1,7 @@
 package tuning
 
 import (
+	"fmt"
 	"sync"
 )
 
@@ -44,11 +45,11 @@ func (c *Cantor) runTrack(t *Track) *Clock {
 			if super || c.MaxTrack == 0 || c.trackNum < c.MaxTrack {
 				cantor.wg.Add(1)
 				cantor.trackNum++
-				// fmt.Println("wg", cantor.trackNum)
+				fmt.Println("wg", cantor.trackNum)
 				go func() {
 					defer func() {
 						cantor.trackNum--
-						// fmt.Println("wg", cantor.trackNum)
+						fmt.Println("wg", cantor.trackNum)
 						cantor.wg.Done()
 					}()
 					// fmt.Println("run", *t.melody)
