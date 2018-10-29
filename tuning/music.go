@@ -24,8 +24,7 @@ func NewMusic() *Music {
 }
 
 func getUUID() string {
-	// id1 := uuid.Must(uuid.NewV4())
-	id, _ := uuid.NewV4()
+	id := uuid.NewV4()
 	return id.String()
 }
 
