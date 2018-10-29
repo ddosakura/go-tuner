@@ -45,11 +45,12 @@ func (m *Music) AddSubMelody(mainID string, melody *Melody, bufLen int) (id stri
 	_, ok = m.tc[mainID]
 	if ok {
 		id = getUUID()
-		m.tc[mainID].next = append(m.tc[mainID].next, &TrackChan{
+		m.tc[id] = &TrackChan{
 			melody: melody,
 			next:   []*TrackChan{},
 			bufLen: bufLen,
-		})
+		}
+		m.tc[mainID].next = append(m.tc[mainID].next, m.tc[id])
 	}
 	return
 }
