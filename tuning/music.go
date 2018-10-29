@@ -23,9 +23,15 @@ func NewMusic() *Music {
 	}
 }
 
+func getUUID() string {
+	// id1 := uuid.Must(uuid.NewV4())
+	id, _ := uuid.NewV4()
+	return id.String()
+}
+
 // AddMainMelody - add melody
 func (m *Music) AddMainMelody(melody *Melody, bufLen int) (id string) {
-	id = uuid.Must(uuid.NewV4()).String()
+	id = getUUID()
 	m.tc[id] = &TrackChan{
 		melody: melody,
 		next:   []*TrackChan{},
@@ -39,7 +45,7 @@ func (m *Music) AddMainMelody(melody *Melody, bufLen int) (id string) {
 func (m *Music) AddSubMelody(mainID string, melody *Melody, bufLen int) (id string, ok bool) {
 	_, ok = m.tc[mainID]
 	if ok {
-		id = uuid.Must(uuid.NewV4()).String()
+		id = getUUID()
 		m.tc[mainID].next = append(m.tc[mainID].next, &TrackChan{
 			melody: melody,
 			next:   []*TrackChan{},

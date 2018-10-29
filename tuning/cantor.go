@@ -11,6 +11,7 @@ type Cantor struct {
 	trackNum int
 }
 
+// TODO: 考虑环境隔离
 var cantor = newCantor()
 
 // GetCantor - get cantor
